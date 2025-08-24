@@ -2,7 +2,14 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+
+// Allow frontend on port 3000
+app.use(cors({
+  origin: "*",   // you can also set: ["http://localhost:3000"]
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type"],
+}));
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
